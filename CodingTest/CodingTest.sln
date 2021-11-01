@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "code_4", "code_4\code_4.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClawCraneGame", "ClawCraneGame\ClawCraneGame.vcxproj", "{795DA625-888B-43A6-95F8-F539D3E4AB43}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddNonExistNumber", "AddNonExistNumber\AddNonExistNumber.vcxproj", "{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{795DA625-888B-43A6-95F8-F539D3E4AB43}.Release|x64.Build.0 = Release|x64
 		{795DA625-888B-43A6-95F8-F539D3E4AB43}.Release|x86.ActiveCfg = Release|Win32
 		{795DA625-888B-43A6-95F8-F539D3E4AB43}.Release|x86.Build.0 = Release|Win32
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Debug|x64.ActiveCfg = Debug|x64
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Debug|x64.Build.0 = Debug|x64
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Debug|x86.ActiveCfg = Debug|Win32
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Debug|x86.Build.0 = Debug|Win32
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Release|x64.ActiveCfg = Release|x64
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Release|x64.Build.0 = Release|x64
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Release|x86.ActiveCfg = Release|Win32
+		{57F9ECF1-4107-456C-8EC2-92FDD0F253B2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
