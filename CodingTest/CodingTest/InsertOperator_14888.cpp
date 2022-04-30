@@ -7,78 +7,83 @@ int sequence = 0;
 int combCount = 0;	// 중복 조합의 경우의 수
 vector<int> arr;
 
-long MaxCalculation(int result, int idx, int op, vector<int> ops) {
-	if (ops[op] == 0) return LONG_MIN;
+long maxResult = LONG_MIN;
+long minResult = LONG_MAX;
 
-	vector<int> temp = ops;
-	vector<long> tempResult(4);
+long MaxCalculation(int idx, vector<int> ops, int opIdx) {
+	if (ops[opIdx] == 0) return LONG_MIN;
 
-	switch (op) {
+	long result;
+
+	switch (opIdx) {
 	case 0:
-		result = arr[idx] + arr[idx + 1];
-		temp[0]--;
+		arr[idx + 1] = arr[idx] + arr[idx + 1];
+		ops[0]--;
 		break;
 	case 1:
-		result = arr[idx] - arr[idx + 1];
-		temp[1]--;
+		arr[idx + 1] = arr[idx] - arr[idx + 1];
+		ops[1]--;
 		break;
 	case 2:
-		result = arr[idx] * arr[idx + 1];
-		temp[2]--;
+		arr[idx + 1] = arr[idx] * arr[idx + 1];
+		ops[2]--;
 		break;
 	case 3:
-		result = arr[idx] / arr[idx + 1];
-		temp[3]--;
+		arr[idx + 1] = arr[idx] / arr[idx + 1];
+		ops[3]--;
 		break;
 	}
 
 	for (int i = 0; i < 4; i++) {
-		if (temp[i] == 0) {
-			tempResult[i] = LONG_MIN;
-		}
+		if (ops[i] != 0)
+			return MaxCalculation(idx + 1, ops, i);
 		else {
-			tempResult[i] = MaxCalculation(result, idx + 1, temp[i], temp);
+			if (maxResult < arr[idx + 1]) {
+				maxResult = arr[idx + 1];
+			}
+			break;
 		}
 	}
 
-	return *(max_element(tempResult.begin(), tempResult.end()));
+	return maxResult;
 }
 
-long MinCalculation(int result, int idx, int op, vector<int> ops) {
-	if (ops[op] == 0) return LONG_MAX;
+long MinCalculation(int idx, vector<int> ops, int opIdx) {
+	if (ops[opIdx] == 0) return LONG_MAX;
 
-	vector<int> temp = ops;
-	vector<long> tempResult(4);
+	long result;
 
-	switch (op) {
+	switch (opIdx) {
 	case 0:
-		result = arr[idx] + arr[idx + 1];
-		temp[0]--;
+		arr[idx + 1] = arr[idx] + arr[idx + 1];
+		ops[0]--;
 		break;
 	case 1:
-		result = arr[idx] - arr[idx + 1];
-		temp[1]--;
+		arr[idx + 1] = arr[idx] - arr[idx + 1];
+		ops[1]--;
 		break;
 	case 2:
-		result = arr[idx] * arr[idx + 1];
-		temp[2]--;
+		arr[idx + 1] = arr[idx] * arr[idx + 1];
+		ops[2]--;
 		break;
 	case 3:
-		result = arr[idx] / arr[idx + 1];
-		temp[3]--;
+		arr[idx + 1] = arr[idx] / arr[idx + 1];
+		ops[3]--;
 		break;
 	}
 
 	for (int i = 0; i < 4; i++) {
-		if (temp[i] == 0) {
-			tempResult[i] = LONG_MAX;
-		}
+		if (ops[i] != 0)
+			return MinCalculation(idx + 1, ops, i);
 		else {
-			tempResult[i] = MinCalculation(result, idx + 1, temp[i], temp);
+			if (minResult > arr[idx + 1]) {
+				minResult = arr[idx + 1];
+			}
+			break;
 		}
 	}
 
-	return *(min_element(tempResult.begin(), tempResult.end()));
+	return minResult;
 }
 
 
@@ -104,15 +109,14 @@ int main() {
 		}
 	}
 
-	vector<int> tempResult(4);
 	for (int i = 0; i < 4; i++) {
-		tempResult[i] = MaxCalculation(arr[0], 0, operators[i], operators);
+		MaxCalculation(0, operators, i);
 	}
 
-	cout << *max_element(tempResult.begin(), tempResult.end()) << '\n';
+	cout << maxResult << '\n';
 
 	for (int i = 0; i < 4; i++) {
-		tempResult[i] = MinCalculation(arr[0], 0, operators[i], operators);
+		MinCalculation(0, operators, i);
 	}
-	cout << *min_element(tempResult.begin(), tempResult.end());
+	cout << minResult;
 }
